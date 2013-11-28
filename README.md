@@ -9,7 +9,7 @@ Usage
 This class is using [LibUsbDotNet][2]. First install it and add device filter.
 Example of usage:
 
-```
+```cs
 var footswtich = new FootswitchListener();
  
 try
