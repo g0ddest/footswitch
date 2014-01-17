@@ -105,6 +105,9 @@ namespace Footswitch
             {
             }
             _isListening = false;
+            var wholeUsbDevice = UsbDevice as IUsbDevice;
+            if (wholeUsbDevice != null) wholeUsbDevice.ReleaseInterface(0);
+            UsbDevice.Close();
         }
 
     }
