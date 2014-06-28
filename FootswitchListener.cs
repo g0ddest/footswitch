@@ -87,14 +87,18 @@ namespace Footswitch
 
                 _reader.Read(readBuffer, Delay, out bytesRead);
 
+                byte sum = readBuffer.Aggregate<byte, byte>(0, (current, b) => (byte) (current + b));
+
                 // Действие на сигналу
                 // 15000000
                 // 20000000
-                if (readBuffer[0] + readBuffer[1] == 6 ) OnPress();
+                // Другой девайс просто
+                // 10050000
+                if (sum == 6) OnPress();
                 // Действие на сигналу
                 // 20000000
                 // 10000000
-                if (readBuffer[0] + readBuffer[1] == 1) OnRelease();
+                if (sum == 1) OnRelease();
             }
         }
 
